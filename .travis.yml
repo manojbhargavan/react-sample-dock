@@ -11,7 +11,11 @@ scripts:
 
 after_success:
   - echo "$DOCKERHUB_PWD" | docker login -u "$DOCKER_USR" --password-stdin
-  - docker build -t manojjonam/multi-client-1 -f ./client/Dockerfile.dev ./client
-  - docker build -t manojjonam/multi-nginx-1 -f ./nginx/Dockerfile.dev ./nginx
-  - docker build -t manojjonam/multi-server-1 -f ./server/Dockerfile.dev ./server
-  - docker build -t manojjonam/multi-worker-1 -f ./worker/Dockerfile.dev ./worker
+  - docker build -t manojjonam/multi-client1 ./client
+  - docker build -t manojjonam/multi-ngnix1 ./ngnix
+  - docker build -t manojjonam/multi-server1 ./server
+  - docker build -t manojjonam/multi-worker1 ./worker
+  - docker push manojjonam/multi-client1
+  - docker push manojjonam/multi-ngnix1
+  - docker push manojjonam/multi-server1
+  - docker push manojjonam/multi-worker1
