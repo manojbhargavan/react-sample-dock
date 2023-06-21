@@ -1,0 +1,14 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t manojjonam/testcontainer -f ./client/Dockerfile.dev ./client
+
+scripts:
+  - docker run -e CI=true manojjonam/testcontainer npm test
+
+after_success:
+  - echo "$DOCKERHUB_PWD" | docker login -u "$DOCKER_USR" --password-stdin
+  - docker build -t manojjonam/multi-client-1 -f ./client/Dockerfile.dev ./client
