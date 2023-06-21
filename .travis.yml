@@ -12,3 +12,6 @@ scripts:
 after_success:
   - echo "$DOCKERHUB_PWD" | docker login -u "$DOCKER_USR" --password-stdin
   - docker build -t manojjonam/multi-client-1 -f ./client/Dockerfile.dev ./client
+  - docker build -t manojjonam/multi-nginx-1 -f ./nginx/Dockerfile.dev ./nginx
+  - docker build -t manojjonam/multi-server-1 -f ./server/Dockerfile.dev ./server
+  - docker build -t manojjonam/multi-worker-1 -f ./worker/Dockerfile.dev ./worker
